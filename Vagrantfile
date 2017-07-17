@@ -14,14 +14,15 @@ Vagrant.configure(2) do |config|
     d.vm.provider "virtualbox" do |v|
       v.memory = 2048
     end
-    d.vm.provision :shell, path: "scripts/bootstrap4CentOs.sh"
+    d.vm.provision :shell , inline: "systemctl restart network"
+    d.vm.provision :shell, path: "scripts/bootstrap4CentOs.sh"    
   end 
-  if Vagrant.has_plugin?("vagrant-cachier")
-    config.cache.scope = :box
-  end
-  if Vagrant.has_plugin?("vagrant-vbguest")
-    config.vbguest.auto_update = true
-    config.vbguest.no_install = false
-    config.vbguest.no_remote = false
-  end
+#  if Vagrant.has_plugin?("vagrant-cachier")
+#    config.cache.scope = :box
+#  end
+#  if Vagrant.has_plugin?("vagrant-vbguest")
+#    config.vbguest.auto_update = true
+#    config.vbguest.no_install = false
+#    config.vbguest.no_remote = false
+#  end
 end

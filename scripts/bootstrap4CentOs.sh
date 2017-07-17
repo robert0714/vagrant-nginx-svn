@@ -11,6 +11,11 @@ testing=`[[ $A =~ 'nginx' ]]`
 echo $testing
 
 echo  "############# ${testing} ##############"
+
+timedatectl set-timezone Asia/Taipei
+
+yum install -y kernel-devel-`uname -r` gcc binutils make perl bzip2
+
  
 if [[ $testing != ""  ]]; then
      echo "Nginx is already installed."
@@ -27,5 +32,8 @@ yum  install -y nginx
 
 yum  install -y httpd subversion mod_dav_svn
 
+yum  install -y mod_ldap
+
+yum install -y mod_authz_ldap
 
 yum update -y
